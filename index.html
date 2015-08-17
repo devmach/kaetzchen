@@ -9,7 +9,27 @@
   <body>
 
     <div ng-controller="CarouselController">
-      {{msg}}
+
+      <h1>Kitten Carousel</h1>
+      <div class="carouselWrapper">
+        <div class="carouselImageContainer">
+          <img ng-repeat="image in images" ng-src="{{image}}" ng-show="$index === activeImage" class="carouselImage">
+        </div>
+
+        <div class="carouselNavContainer">
+          <ul>
+            <li ng-class="{nextPrev: true, active: $index === activeImage}" ng-click="prevSlide()"> ❰ </li>
+            <li ng-repeat="image in images" ng-class="{dots: true, active: $index === activeImage}" ng-click="goToSlide($index)"></li>
+            <li ng-class="{nextPrev: true, active: $index === activeImage}" ng-click="nextSlide()"> ❱ </li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <label>
+          <input type="checkbox" ng-model="shouldAutoRotate" ng-change="startStopAutoRotate(shouldAutoRotate)"> Auto rotate
+        </label>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
