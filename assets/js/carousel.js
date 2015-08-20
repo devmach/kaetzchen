@@ -41,7 +41,8 @@ app.controller('CarouselController', function($scope, $interval) {
 
   $scope.prevSlide = function() {
     $interval.cancel($scope.timer);
-    $scope.goToSlide( $scope.activeImage === 0 ? ($scope.images.length-1) : $scope.activeImage - 1);
+    $scope.goToSlide(($scope.activeImage - 1 + $scope.images.length) %
+      $scope.images.length );
   };
 
   if ($scope.rotateImages) {
